@@ -21,15 +21,17 @@ requirements:
     - pip
     - python
     - setuptools
-    - pyyaml
+    - pyyaml >=5.1
 
   run:
     - python
     - jsonschema
     - six
     - setuptools
-    - pyyaml
+    - pyyaml >=5.1
     - pathlib2
+    - requests
+    - openapi-schema-validator
 
 test:
   imports:
