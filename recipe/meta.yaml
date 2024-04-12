@@ -10,7 +10,7 @@ source:
   sha256: 9d7201cbef1e584f7323c96dc3e45d1a8d1f387a5b0ed808948e094fee328ee2
 
 build:
-  noarch: python
+  skip: true  # [py<38]
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
@@ -20,7 +20,7 @@ requirements:
   host:
     - pip
     - poetry-core >=1.0.0
-    - python >=3.8.0
+    - python
 
   run:
     # keep in sync with the poetry-generated setup.py
@@ -31,12 +31,16 @@ requirements:
     - openapi-schema-validator
     - python
 test:
+  source_files:
+    - tests
   requires:
     - pip
+    - pytest
   imports:
     - openapi_spec_validator
   commands:
     - pip check
+    - pytest -vv
     - openapi-spec-validator --help
 
 
@@ -47,6 +51,7 @@ about:
   license_family: APACHE
   license_file: LICENSE
   dev_url: https://github.com/p1c2u/openapi-spec-validator
+  doc_url: https://openapi-spec-validator.readthedocs.io/en/latest/
   description: |-
     OpenAPI Spec Validator is a Python library that validates OpenAPI Specs
     against the OpenAPI 2.0 (aka Swagger) and OpenAPI 3.0 specification. The
