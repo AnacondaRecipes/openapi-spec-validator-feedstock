@@ -1,4 +1,4 @@
-{% set version = "0.7.1" %}
+{% set version = "0.7.2" %}
 
 package:
   name: openapi-spec-validator
@@ -7,11 +7,11 @@ package:
 source:
   fn: {{ version }}.tar.gz
   url: https://github.com/p1c2u/openapi-spec-validator/archive/{{ version }}.tar.gz
-  sha256: 9d7201cbef1e584f7323c96dc3e45d1a8d1f387a5b0ed808948e094fee328ee2
+  sha256: 331acbcefe9a77cfeca81a6fae776258d3db0071b4d4be9238d0764e3e6b9d3e
 
 build:
   skip: true  # [py<38]
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - openapi-spec-validator = openapi_spec_validator.__main__:main
@@ -19,14 +19,14 @@ build:
 requirements:
   host:
     - pip
-    - poetry-core >=1.0.0
+    - poetry-core
     - python
   run:
     - jsonschema >=4.18.0,<5.0.0
     - openapi-schema-validator >=0.6.0,<0.7.0
     - importlib-resources >=5.8,<7.0  # [py<39]
     - jsonschema-path >=0.3.1,<0.4.0
-    - lazy-object-proxy >=1.7.1,<2
+    - lazy-object-proxy >=1.7.1,<2.0.0
     - python
 
 test:
@@ -43,7 +43,6 @@ test:
     - pytest -vv
     - openapi-spec-validator --help
 
-
 about:
   home: https://github.com/p1c2u/openapi-spec-validator
   license: Apache-2.0
@@ -56,6 +55,8 @@ about:
     OpenAPI Spec Validator is a Python library that validates OpenAPI Specs
     against the OpenAPI 2.0 (aka Swagger) and OpenAPI 3.0 specification. The
     validator aims to check for full compliance with the Specification.
+
+
 
 extra:
   recipe-maintainers:
