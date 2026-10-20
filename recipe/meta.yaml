@@ -1,5 +1,5 @@
 {% set name = "openapi-spec-validator" %}
-{% set version = "0.7.2" %}
+{% set version = "0.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/p1c2u/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 331acbcefe9a77cfeca81a6fae776258d3db0071b4d4be9238d0764e3e6b9d3e
+  sha256: f30096340bd520fc06356bf11c5c9f3204ac0096d90d58a4bd405585768d0ae8
 
 build:
-  skip: true  # [py<38]
+  skip: true  # [py<310]
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
@@ -20,14 +20,16 @@ requirements:
   host:
     - python
     - pip
-    - poetry-core >=1.0.0
+    - poetry-core
   run:
     - python
-    - jsonschema >=4.18.0,<5.0.0
-    - openapi-schema-validator >=0.6.0,<0.7.0
+    - jsonschema >=4.26.0,<5.0.0
+    - openapi-schema-validator >=0.9.0,<0.10.0
     - importlib-resources >=5.8,<7.0  # [py<39]
-    - jsonschema-path >=0.3.1,<0.4.0
-    - lazy-object-proxy >=1.7.1,<2.0.0
+    - jsonschema-path >=0.5.0,<0.6.0
+    - lazy-object-proxy >=1.7.1,<2.0
+    - pydantic-settings >=2.0.0,<3.0.0
+    - pydantic >=2.0.0,<3.0.0
 
 test:
   source_files:
